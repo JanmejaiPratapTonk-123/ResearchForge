@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: Ask a Question
+    url: https://github.com/JanmejaiPratapTonk-123/ResearchForge/issues/new?template=question.md
+    about: Use the Question template to ask anything about the project
+  - name: Read the Contributing Guide
+    url: https://github.com/JanmejaiPratapTonk-123/ResearchForge/blob/main/CONTRIBUTING.md
+    about: Before opening an issue, please read the Contributing Guide

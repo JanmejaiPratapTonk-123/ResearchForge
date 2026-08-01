@@ -1,0 +1,17 @@
+# CODEOWNERS
+#
+# This file defines who is automatically requested to review pull requests
+# that touch specific files or directories.
+#
+# Syntax: <pattern> <github-username>
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for all files not covered by a more specific rule
+* @JanmejaiPratapTonk-123
+
+# Documentation — maintainer reviews all doc changes
+docs/ @JanmejaiPratapTonk-123
+*.md @JanmejaiPratapTonk-123
+
+# GitHub configuration — maintainer reviews all GitHub config changes
+.github/ @JanmejaiPratapTonk-123
