@@ -1,6 +1,8 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+
+import healthRouter from "./routes/health";
 
 dotenv.config();
 
@@ -10,14 +12,8 @@ const PORT = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 
-// Health check endpoint
-app.get('/health', (_req: Request, res: Response) => {
-  res.status(200).json({
-    status: 'ok',
-    service: 'backend',
-    timestamp: new Date().toISOString()
-  });
-});
+// Register routes
+app.use('/', healthRouter);
 
 app.listen(PORT, () => {
   console.log(`[Backend] Express server running on port ${PORT}`);
