@@ -1,0 +1,19 @@
+{
+  "name": "researchforge-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ResearchForge — An open-source AI-powered research operating system",
+  "scripts": {
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend dev",
+    "build": "pnpm --recursive build",
+    "test": "pnpm --recursive test"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.0"
+  }
+}

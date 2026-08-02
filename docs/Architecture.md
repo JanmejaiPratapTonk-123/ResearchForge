@@ -1,7 +1,7 @@
 # Architecture
 
-> **Status: Under Design**  
-> This document describes the planned architecture for ResearchForge. No implementation exists yet. This document will be updated as architectural decisions are made and validated.
+> **Status: ✅ Finalized — Milestone 1 (August 2026)**  
+> This document describes the finalized system architecture for ResearchForge. For technology decision rationale and alternatives, see **[docs/TechStack.md](TechStack.md)**.
 
 ---
 
@@ -9,184 +9,148 @@
 
 - [Overview](#overview)
 - [Guiding Principles](#guiding-principles)
-- [High-Level Component Overview](#high-level-component-overview)
+- [Service Architecture](#service-architecture)
 - [Component Responsibilities](#component-responsibilities)
-- [Planned Data Flow](#planned-data-flow)
-- [Key Architectural Decisions Under Discussion](#key-architectural-decisions-under-discussion)
-- [What Is Not Yet Decided](#what-is-not-yet-decided)
+- [Data Flow — Semantic Search](#data-flow--semantic-search)
+- [Deferred Infrastructure](#deferred-infrastructure)
 - [How to Contribute to Architecture Discussions](#how-to-contribute-to-architecture-discussions)
 
 ---
 
 ## Overview
 
-ResearchForge is planned as a **modular, service-oriented system** with clear boundaries between distinct functional layers. The goal is to allow independent development and testing of each component, and to enable contributors to work on one layer without deep knowledge of the others.
+ResearchForge is built as a **service-oriented system** with four distinct, loosely-coupled services:
 
-The four planned layers are:
+1. **Frontend** — Next.js web application served to the researcher's browser
+2. **Backend API** — Express.js server handling business logic, authentication, and data access
+3. **AI Service** — FastAPI microservice running embedding and inference pipelines
+4. **Database** — PostgreSQL with pgvector for relational data and vector similarity search
 
-1. **Frontend** — The web application that researchers interact with
-2. **Backend API** — The core application server handling business logic and data coordination
-3. **AI Services** — Specialized microservices for embedding, summarization, and NLP
-4. **Database** — Persistent storage for papers, users, knowledge graphs, and metadata
+Each service has a single, clear responsibility. Services communicate via HTTP. A contributor can work on one service without needing to understand the internals of another.
 
 ---
 
 ## Guiding Principles
 
-The architecture is being designed around the following principles:
-
-- **Separation of concerns** — Each service has a single, clear responsibility
-- **API-first** — All inter-service communication goes through well-defined interfaces
-- **Contributor accessibility** — Any contributor should be able to work on one service without running all others
-- **No vendor lock-in** — Where possible, use open standards and avoid tight coupling to specific cloud providers or proprietary tools
-- **Iterative development** — Start simple, add complexity only when justified
+- **Separation of concerns:** Each service owns one domain.
+- **API-first:** All inter-service communication uses well-defined HTTP contracts.
+- **Contributor accessibility:** Any service can be developed independently with the rest mocked or stubbed.
+- **No vendor lock-in:** All components are open-source and self-hostable.
+- **Minimum viable infrastructure:** No service is added until it earns its place at the current milestone.
 
 ---
 
-## High-Level Component Overview
+## Service Architecture
 
 ```
-┌─────────────────────────────────────────────────┐
-│                   Frontend                       │
-│         (Web Application / UI)                   │
-└────────────────────┬────────────────────────────┘
-                     │ HTTP / REST or GraphQL
-                     ▼
-┌─────────────────────────────────────────────────┐
-│                  Backend API                     │
-│      (Business Logic, Auth, Data Access)         │
-└──────┬─────────────────────────┬────────────────┘
-       │ Internal API            │ Database queries
-       ▼                         ▼
-┌─────────────────┐   ┌──────────────────────────┐
-│   AI Services   │   │        Database           │
-│  (Embeddings,   │   │  (Papers, Users, Graph,   │
-│  Summarization, │   │   Annotations, Metadata)  │
-│  NLP Pipelines) │   └──────────────────────────┘
-└─────────────────┘
+┌───────────────────────────────────┐
+│          Frontend                 │
+│       (Next.js / React)           │
+└────────────────┬──────────────────┘
+                 │ REST / HTTP
+                 ▼
+┌───────────────────────────────────┐
+│          Backend API              │
+│  (Express.js · TypeScript · ORM)  │
+└────────┬──────────────────────────┘
+         │                │
+   HTTP  │          SQL / ORM
+         ▼                ▼
+┌──────────────┐  ┌───────────────────┐
+│  AI Service  │  │    PostgreSQL      │
+│  (FastAPI ·  │  │  + pgvector       │
+│   Python)    │  └───────────────────┘
+└──────────────┘
 ```
 
-> **Note:** This diagram shows the planned topology. All technology choices within each layer are still under evaluation. See [TechStack.md](TechStack.md).
+**Communication pattern:** Frontend → Backend API only. Backend API → AI Service and Database. The AI Service does not directly access the database; it receives text from the backend and returns vectors.
 
 ---
 
 ## Component Responsibilities
 
-### Frontend
+### Frontend (`frontend/`)
 
-- Provide the researcher-facing web interface
-- Handle routing, state management, and user interaction
-- Communicate with the Backend API only (no direct database or AI service calls)
-- Render search results, knowledge graphs, paper views, and collaboration features
+- Researcher-facing web application
+- Renders UI using Next.js, React, Tailwind CSS, and shadcn/ui
+- Manages server state with TanStack Query
+- Handles form input and validation with React Hook Form + Zod
+- Communicates exclusively with the Backend API via REST
 
-### Backend API
+### Backend API (`backend/`)
 
-- Serve as the single point of entry for all frontend requests
-- Handle authentication and authorization
-- Coordinate between the database and AI services
-- Implement core business logic (search orchestration, citation management, workspace management)
-- Expose a well-documented API (REST and/or GraphQL — under evaluation)
+- Single HTTP entry point for all frontend requests
+- Handles user authentication (JWT, HTTP-only cookies)
+- Contains all business logic (search orchestration, paper management, workspace operations)
+- Queries the database via Prisma ORM
+- Delegates embedding and AI tasks to the AI Service via internal HTTP requests
+- Serves interactive API documentation via OpenAPI / Swagger
 
-### AI Services
+### AI Service (`ai-services/`)
 
-- Run as one or more independent services focused on ML/NLP tasks
-- Provide: text embedding (for semantic search), paper summarization, entity extraction, relationship detection
-- Accept requests from the Backend API; return structured results
-- Be replaceable or upgradeable without affecting the Backend API contract
+- Python microservice running sentence-transformers
+- Accepts text input and returns vector embeddings
+- Stateless — no database access; all persistence is handled by the Backend API
+- Designed to be extended with additional AI capabilities in M3 (summarization, entity extraction)
 
-### Database
+### Database (`database/`)
 
-- Store all persistent data: papers and metadata, user accounts, workspaces, annotations, knowledge graph nodes and edges
-- The specific database technology is under evaluation (relational, graph, vector, or a combination)
-- Migrations and schema versioning will be managed explicitly
-
----
-
-## Planned Data Flow
-
-### Paper ingestion (planned)
-
-```
-User submits paper URL or DOI
-        │
-        ▼
-Backend API validates and queues ingestion
-        │
-        ▼
-AI Services extract text, generate embeddings, extract entities
-        │
-        ▼
-Backend API stores paper + metadata + embeddings in Database
-        │
-        ▼
-Frontend displays paper in user's workspace
-```
-
-### Semantic search (planned)
-
-```
-User enters a natural language query in Frontend
-        │
-        ▼
-Backend API sends query to AI Services for embedding
-        │
-        ▼
-Backend API queries Database using vector similarity search
-        │
-        ▼
-Backend API ranks, filters, and returns results
-        │
-        ▼
-Frontend renders ranked paper list
-```
+- PostgreSQL with the pgvector extension
+- Stores: users, papers, metadata, workspaces, vector embeddings
+- Schema managed by Prisma ORM
+- Vector similarity search performed via pgvector (raw SQL through Prisma)
 
 ---
 
-## Key Architectural Decisions Under Discussion
+## Data Flow — Semantic Search
 
-These decisions have not been made. They are being discussed and will be documented here once decided.
+The core data flow for semantic paper search:
 
-| Decision | Options Under Consideration | Status |
+```
+1. Researcher submits a search query in the Frontend
+
+2. Frontend sends the query to the Backend API
+
+3. Backend API forwards the query text to the AI Service
+
+4. AI Service embeds the text using sentence-transformers
+   and returns a vector to the Backend API
+
+5. Backend API performs vector similarity search
+   against stored paper embeddings in PostgreSQL (pgvector)
+
+6. Backend API returns ranked results to the Frontend
+
+7. Frontend renders the paper list
+```
+
+> **Note:** Specific API endpoint paths are not documented here. The API specification will be defined and published during Milestone 1.5.
+
+---
+
+## Deferred Infrastructure
+
+The following infrastructure components are intentionally excluded from M1 and M2:
+
+| Component | Deferred Until | Reason |
 |---|---|---|
-| Frontend framework | React, Vue, SvelteKit, Next.js | Under Discussion |
-| Backend language/framework | Python (FastAPI/Django), Node.js (Express) | Under Discussion |
-| API protocol | REST, GraphQL, tRPC | Under Discussion |
-| Vector database | pgvector, Weaviate, Qdrant, Chroma | Under Discussion |
-| Relational database | PostgreSQL, SQLite (dev) | Under Discussion |
-| Graph database | Neo4j, TigerGraph, or embedded in relational | Under Discussion |
-| AI model hosting | Self-hosted open models, API-based (OpenAI, Cohere), both | Under Discussion |
-| Authentication | JWT, OAuth2, or external provider (Auth0, Supabase Auth) | Under Discussion |
-| Container strategy | Docker Compose (dev), Kubernetes (prod — future) | Under Discussion |
+| **Knowledge Graph store** | M3 | Apache AGE (PostgreSQL extension) will be evaluated first |
+| **Standalone Vector DB** (Qdrant, Weaviate) | M3 if needed | pgvector is sufficient at MVP scale |
+| **Caching layer** (Redis) | M3 | PostgreSQL query performance is sufficient at MVP |
+| **Message queue** (Kafka, RabbitMQ) | Post v1.0 | No async event streaming requirement at planned milestones |
 
----
-
-## What Is Not Yet Decided
-
-The following aspects of the system are explicitly deferred:
-
-- Specific deployment infrastructure (cloud provider, hosting strategy)
-- Real-time collaboration mechanism (WebSockets, CRDTs, operational transforms)
-- Mobile support
-- Plugin / extension API design
-- Search ranking algorithm
-- Knowledge graph storage and query model
-
-These will be addressed in later milestones once the core system design is stable.
+See [docs/TechStack.md#deferred-technologies](TechStack.md#deferred-technologies) for full rationale.
 
 ---
 
 ## How to Contribute to Architecture Discussions
 
-Architecture decisions at this stage are open for community input. If you have experience with any of the technologies or patterns under consideration, your input is valuable.
+Architecture decisions are documented in [docs/TechStack.md](TechStack.md). If you have a question or suggestion about system design:
 
-To contribute:
-
-1. Open a GitHub Issue using the **Question** or **Feature Request** template
-2. Tag it with the `discussion` label
-3. Describe your experience, the trade-offs you see, and your recommendation
-4. The maintainer will aggregate input and document the final decision here
+1. Open a GitHub Issue using the **Question** or **Feature Request** template.
+2. Add the `discussion` label.
+3. Reference the specific architecture section or technology.
 
 ---
 
-*Last updated: August 2026*  
-*See also: [TechStack.md](TechStack.md) · [Vision.md](Vision.md) · [Roadmap.md](Roadmap.md)*
+👉 **Next Step:** Explore the finalized technology decisions in **[docs/TechStack.md](TechStack.md)** *(⏱️ ~10 min read)*!

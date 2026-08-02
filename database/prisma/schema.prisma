@@ -1,0 +1,17 @@
+// Prisma schema for ResearchForge
+// Learn more about Prisma schema: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [pgvector(map: "vector")]
+}
+
+// NOTE: Models are intentionally omitted for Milestone 1.5.
+// Contributors will implement core data models (User, Paper, Workspace, PaperEmbedding)
+// as part of IEEE Summer of Code contributor issues.

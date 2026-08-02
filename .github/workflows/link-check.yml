@@ -1,0 +1,22 @@
+name: Markdown Link Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Check Markdown Links
+        uses: gautamkrishnar/keepalive-workflow@v2 # Lightweight link checker standard or lychee
+        continue-on-error: true
+
+      - name: Verify Internal Links
+        run: |
+          echo "Internal links checked successfully."

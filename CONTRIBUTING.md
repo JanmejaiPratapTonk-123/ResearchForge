@@ -1,8 +1,10 @@
 # Contributing to ResearchForge
 
-Thank you for your interest in contributing to ResearchForge. This project is part of **IEEE Summer of Code 2026** and is in its early planning and development phase. Every contribution — whether documentation, design, architecture discussion, or eventually code — makes a real difference.
+Thank you for your interest in contributing to ResearchForge! This project is part of **IEEE Summer of Code 2026** and is in its early planning and development phase. Every contribution — whether documentation, UI design, architecture discussion, or code — makes a real difference.
 
-This guide will help you understand how the project is organized, what you can contribute right now, and how to work with the team effectively.
+> 🚀 **First time contributing to ResearchForge?**  
+> Read our 15-minute step-by-step onboarding walkthrough first: **[docs/GettingStarted.md](docs/GettingStarted.md)**.  
+> Use this document (`CONTRIBUTING.md`) as your canonical reference guide for contribution rules, workflow policies, and git conventions.
 
 ---
 
@@ -10,171 +12,102 @@ This guide will help you understand how the project is organized, what you can c
 
 - [Code of Conduct](#code-of-conduct)
 - [Project Philosophy](#project-philosophy)
-- [Ways to Contribute](#ways-to-contribute)
-- [Your First Contribution](#your-first-contribution)
-- [Issue Workflow](#issue-workflow)
-- [Branch Naming](#branch-naming)
+- [What If I Don't Know the Tech Stack?](#what-if-i-dont-know-the-tech-stack)
+- [Maintainer Responsiveness SLA](#maintainer-responsiveness-sla)
+- [Issue Assignment Workflow](#issue-assignment-workflow)
+- [Branch Naming & Git Conventions](#branch-naming--git-conventions)
 - [Commit Message Conventions](#commit-message-conventions)
 - [Pull Request Process](#pull-request-process)
 - [Coding Standards](#coding-standards)
 - [Review Process](#review-process)
-- [Communication](#communication)
-- [Recognition](#recognition)
-- [FAQ](#faq)
+- [Communication & FAQ](#communication--faq)
 
 ---
 
 ## Code of Conduct
 
-This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you agree to uphold these standards. Violations can be reported to the project maintainer.
+This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you agree to uphold these standards.
 
 ---
 
 ## Project Philosophy
 
-ResearchForge is being built in the open. This means:
-
-- **Transparency over perfection.** We document decisions as we make them, including the ones we're still unsure about.
-- **Honesty about status.** We never present planned features as implemented. If something doesn't exist yet, we say so.
-- **Collaboration over speed.** We prefer thoughtful contributions with good context over rushed submissions.
-- **Accessibility first.** First-time contributors are just as valued as experienced ones.
-
----
-
-## Ways to Contribute
-
-Because ResearchForge is in the planning and early development phase, the most impactful contributions right now are:
-
-### Right now (no code required)
-- **Documentation** — Improve or expand `docs/`, fix typos, add clarity
-- **Architecture discussion** — Share ideas on system design in GitHub Issues
-- **Tech stack discussion** — Help evaluate technology choices
-- **Design** — Create a project logo, banner, or UI mockups
-- **Requirements** — Help define and refine planned features
-
-### Soon (once architecture is finalized)
-- **Backend development** — API design and implementation
-- **Frontend development** — UI components and pages
-- **AI services** — Embedding, summarization, NLP pipelines
-- **Testing** — Unit, integration, and end-to-end tests
-- **DevOps** — CI/CD pipelines, Docker configuration
-
-If you are unsure whether your idea fits, open an issue first and discuss it before building.
+ResearchForge is built in the open:
+- **Transparency over perfection:** We document decisions as we make them.
+- **Honesty about status:** We never present planned features as implemented.
+- **Collaboration over speed:** Thoughtful contributions with good context win.
+- **Accessibility first:** Beginners are just as valued as experienced maintainers.
 
 ---
 
-## Your First Contribution
+## What If I Don't Know the Tech Stack?
 
-If this is your first time contributing to an open-source project, here is a step-by-step guide for making a documentation contribution (the best place to start right now).
+**You do NOT need to know our future code stack to contribute today!**
 
-### Step 1 — Fork the repository
+ResearchForge is in early planning (Milestone 0 & Milestone 1). We actively need non-code and early-stage contributions across multiple skill areas:
 
-Click the **Fork** button at the top-right of the [ResearchForge repository](https://github.com/JanmejaiPratapTonk-123/ResearchForge).
-
-### Step 2 — Clone your fork
-
-```bash
-git clone https://github.com/YOUR_USERNAME/ResearchForge.git
-cd ResearchForge
-```
-
-### Step 3 — Create a branch
-
-```bash
-git checkout -b docs/your-change-description
-```
-
-See [Branch Naming](#branch-naming) for conventions.
-
-### Step 4 — Make your changes
-
-Edit the relevant Markdown files in `docs/` or the root. Keep changes focused — one topic per PR.
-
-### Step 5 — Commit your changes
-
-```bash
-git add .
-git commit -m "docs: describe what you changed"
-```
-
-See [Commit Message Conventions](#commit-message-conventions) for the format.
-
-### Step 6 — Push your branch
-
-```bash
-git push origin docs/your-change-description
-```
-
-### Step 7 — Open a Pull Request
-
-Go to your fork on GitHub and click **Compare & pull request**. Fill in the PR template and submit.
-
-A maintainer will review your PR, leave feedback if needed, and merge it once it's ready.
+| If your skill / background is... | You can work on... |
+|---|---|
+| **Graphic Design / UI** | Project logo, README banner, landing page wireframes |
+| **System Design / Architecture** | Architecture diagram improvements, technical comparisons (e.g. Auth options, Vector DBs) |
+| **Technical Writing** | Documentation clarity, guide structure, fixing broken links |
+| **Research / Academia** | User problem statements, citation format specs, feature requirements |
+| **Frontend / Backend / AI** | Technology evaluation discussions, scaffolding proposals for M1 |
 
 ---
 
-## Issue Workflow
+## Maintainer Responsiveness SLA
 
-### Reporting a bug
+We value your time and effort. Project maintainers commit to the following response times:
 
-1. Search [existing issues](https://github.com/JanmejaiPratapTonk-123/ResearchForge/issues) to check it isn't already reported.
-2. Open a new issue using the **Bug Report** template.
-3. Fill in all sections — incomplete reports are harder to act on.
+- **Questions & Discussions:** Acknowledged within **24 to 48 hours**
+- **Issue Triage & Labeling:** Processed within **48 hours**
+- **Pull Request Reviews:** Initial review within **72 hours**
 
-### Requesting a feature
-
-1. Search existing issues to check it hasn't already been requested.
-2. Open a new issue using the **Feature Request** template.
-3. Describe the problem you are trying to solve, not just the solution you have in mind.
-
-### Asking a question
-
-Use the **Question** template. Questions are welcome — there are no bad ones.
-
-### Improving documentation
-
-Use the **Documentation Improvement** template to flag a specific document, page, or section that needs work.
-
-### Working on an issue
-
-- Comment on the issue to let others know you're working on it.
-- If an issue has been assigned to someone, don't open a duplicate PR without discussion.
-- For significant changes, discuss the approach in the issue before starting work.
+If you don't receive a response within these windows, feel free to leave a gentle reminder comment on the issue or PR!
 
 ---
 
-## Branch Naming
+## Issue Assignment Workflow
 
-Use the following convention for all branches:
+To prevent duplicate effort and ensure fair opportunities for all contributors:
+
+### 1. Finding an issue
+Browse [GitHub Issues](https://github.com/JanmejaiPratapTonk-123/ResearchForge/issues). Filter by labels:
+- `good first issue` — approachable tasks for first-time contributors
+- `help wanted` — open tasks seeking community help
+- `documentation` / `design` / `discussion` — non-code contribution categories
+
+### 2. Requesting assignment
+- Leave a comment on the issue stating: *"I'd like to work on this issue. Please assign it to me."*
+- **Wait for a maintainer to assign the issue to you** before opening a PR.
+- Please request **only one issue at a time** so everyone gets a chance to participate.
+
+### 3. Assignment duration & unassignment
+- Once assigned, you have **7 days** to open a draft PR or post an update.
+- If there is no activity or update for **7 days**, the issue may be unassigned and released to other contributors.
+- If you get busy and can no longer work on an assigned issue, please comment to release it — we appreciate your honesty!
+
+---
+
+## Branch Naming & Git Conventions
+
+Use the following convention for all branch names:
 
 ```
 <type>/<short-description>
 ```
 
-| Type | When to use |
-|---|---|
-| `docs/` | Documentation changes |
-| `feat/` | New features |
-| `fix/` | Bug fixes |
-| `chore/` | Maintenance, config, tooling |
-| `refactor/` | Code restructuring (no behavior change) |
-| `test/` | Adding or updating tests |
-| `ci/` | CI/CD pipeline changes |
+| Type | Purpose | Example |
+|---|---|---|
+| `docs/` | Documentation changes | `docs/update-getting-started` |
+| `design/` | Asset, logo, diagram additions | `design/readme-banner` |
+| `feat/` | New features | `feat/paper-search-endpoint` |
+| `fix/` | Bug fixes | `fix/broken-link-in-readme` |
+| `chore/` | Maintenance, config, dependencies | `chore/update-gitignore` |
+| `refactor/` | Code restructuring without behavior change | `refactor/api-router` |
 
-**Examples:**
-
-```bash
-docs/improve-architecture-overview
-feat/paper-search-endpoint
-fix/broken-link-in-readme
-chore/add-python-gitignore
-```
-
-- Use lowercase and hyphens only.
-- Keep descriptions short and meaningful.
-- Branch off from `main` unless otherwise instructed.
-
-See [docs/BranchingStrategy.md](docs/BranchingStrategy.md) for the full branching workflow.
+> 📖 **Quick Reference:** Need a command cheat-sheet? See **[docs/BranchingStrategy.md](docs/BranchingStrategy.md)** for step-by-step git commands and rebase instructions.
 
 ---
 
@@ -183,7 +116,6 @@ See [docs/BranchingStrategy.md](docs/BranchingStrategy.md) for the full branchin
 We follow [Conventional Commits](https://www.conventionalcommits.org/).
 
 ### Format
-
 ```
 <type>(<optional scope>): <short description>
 
@@ -192,116 +124,60 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/).
 [optional footer]
 ```
 
-### Types
-
-| Type | Purpose |
-|---|---|
-| `feat` | A new feature |
-| `fix` | A bug fix |
-| `docs` | Documentation changes only |
-| `chore` | Maintenance tasks, config, tooling |
-| `refactor` | Code changes that don't fix a bug or add a feature |
-| `test` | Adding or updating tests |
-| `ci` | CI/CD changes |
-| `style` | Formatting, whitespace (no logic change) |
-
-### Examples
-
-```bash
-docs: add architecture overview to Vision.md
-feat(search): add paper search endpoint skeleton
-fix: correct broken link in CONTRIBUTING.md
-chore: add Python entries to .gitignore
-```
+### Allowed Types
+`feat`, `fix`, `docs`, `design`, `chore`, `refactor`, `test`, `ci`, `style`
 
 ### Rules
-
-- Use the **imperative mood** in the description: "add" not "added", "fix" not "fixed".
-- Keep the first line under **72 characters**.
-- Reference related issues in the footer: `Closes #42` or `Refs #17`.
-- Do not end the subject line with a period.
+- Use imperative mood: `"add"` not `"added"`, `"fix"` not `"fixed"`.
+- Keep first line under **72 characters**.
+- Link related issues in footer: `Closes #42` or `Refs #17`.
 
 ---
 
 ## Pull Request Process
 
-1. **Fill in the PR template** completely. Incomplete PRs will be returned for more information.
-2. **One concern per PR.** Don't bundle unrelated changes.
-3. **Reference the issue** your PR addresses using `Closes #<issue-number>` or `Refs #<issue-number>`.
-4. **Self-review your diff** before requesting review. Read every line you've changed.
-5. **Mark as Draft** if your PR isn't ready for review — use it to share work in progress.
-6. **Be responsive** to review feedback. PRs with no response for 14 days may be closed.
-
-The maintainer aims to review PRs within **72 hours** during active development. Response times may vary during project phases.
+1. **Fill in the PR template completely.**
+2. **Focus on a single concern.** Don't bundle unrelated changes.
+3. **Reference the issue** resolved using `Closes #<number>`.
+4. **Self-review your diff** before requesting review.
+5. **Mark as Draft** if work is still in progress.
 
 ---
 
 ## Coding Standards
 
-> **Note:** Detailed coding standards are under development and will be finalized when the tech stack is confirmed. See [docs/CodingStandards.md](docs/CodingStandards.md).
-
-General principles that apply regardless of language:
-
-- **Readable over clever.** Code is read far more often than it is written.
-- **Small, focused changes.** One PR should do one thing.
-- **Meaningful names.** Variables, functions, and files should describe their purpose.
-- **Add comments where the "why" isn't obvious.** Don't comment on what the code does — explain why it does it that way.
-- **Don't leave commented-out code in PRs.** Use git history instead.
+Detailed coding standards will be finalized in Milestone 1. General principles:
+- **Clarity over cleverness.**
+- **Readable variable and function names.**
+- **No secrets or credentials in commits.**
+- See [docs/CodingStandards.md](docs/CodingStandards.md) for current writing and documentation standards.
 
 ---
 
 ## Review Process
 
-All contributions go through at least one maintainer review before merging.
-
-### What reviewers look for
-
-- Does the change align with the project's direction?
-- Is the code (or documentation) clear and accurate?
-- Does it follow the conventions in this guide?
-- Are there edge cases or gaps that should be addressed?
-
-### Responding to feedback
-
-- Review comments are suggestions, not personal criticism.
-- If you disagree with feedback, explain your reasoning politely.
-- Mark comments as resolved once you've addressed them.
-- Request a re-review after making significant changes.
+All pull requests are reviewed by a project maintainer.
+- Reviewers evaluate accuracy, clarity, adherence to conventions, and scope.
+- Review feedback is constructive. If changes are requested, update your branch and push — the PR will update automatically.
 
 ---
 
-## Communication
+## Communication & FAQ
 
-- **GitHub Issues** — For bugs, features, questions, and documentation improvements. This is the primary communication channel.
-- **Pull Request comments** — For discussion directly related to a specific change.
-- **Issue discussions** — For broader topics, architecture debates, and decisions.
+- **Primary Channel:** [GitHub Issues](https://github.com/JanmejaiPratapTonk-123/ResearchForge/issues) and GitHub Discussions.
+- **Code of Conduct:** [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
-When in doubt, open an issue. It creates a permanent, searchable record of the conversation.
+### FAQ
+
+**Q: Is it too early to contribute?**  
+A: No! Milestone 0 and Milestone 1 are ideal for design, architecture, research, and documentation contributions.
+
+**Q: How long does review take?**  
+A: Maintainers aim for 72 hours max.
+
+**Q: Can I work on an unassigned issue?**  
+A: Comment on the issue first to get assigned before writing code or opening a PR!
 
 ---
 
-## Recognition
-
-All contributors are recognized in the project. Significant contributors may be invited to become project collaborators with commit access or review responsibilities over time.
-
----
-
-## FAQ
-
-**Q: The project is in early development — is it too early to contribute?**  
-A: No. This is exactly the right time. Documentation and architecture discussions now shape everything that gets built later. Your input matters most at this stage.
-
-**Q: I found a typo. Is that worth a PR?**  
-A: Yes. Small improvements add up. Fix it, commit it, open a PR.
-
-**Q: I have an idea for the architecture. Where do I share it?**  
-A: Open a GitHub Issue using the Feature Request or Question template. Tag it as a `discussion`.
-
-**Q: How long does it take for a PR to get reviewed?**  
-A: The maintainer aims for 72 hours. During busy periods it may take longer.
-
-**Q: Can I pick up an issue that was already assigned?**  
-A: Comment on the issue first. If there's been no activity for more than 2 weeks, the assignment may be released.
-
-**Q: What if I break something?**  
-A: That's what code review is for. Open your PR, describe what you changed, and the team will help.
+👉 **Next Step:** Ready to get started? Read the step-by-step walkthrough in **[docs/GettingStarted.md](docs/GettingStarted.md)** *(⏱️ ~5 min read)*!
