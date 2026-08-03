@@ -2,6 +2,8 @@
 
 <div align="center">
 
+<img src="docs/assets/banner.png" alt="ResearchForge — An Open Source AI-Powered Research Operating System — IEEE Summer of Code 2026" width="100%">
+
 **An open-source AI-powered research operating system**
 
 _Designed for researchers who need more than a reference manager._
