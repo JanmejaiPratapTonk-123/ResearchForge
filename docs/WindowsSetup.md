@@ -101,7 +101,7 @@ Open a **new PowerShell window** and run:
 docker --version
 ```
 
-Expected output (version may differ):
+Example output (version may differ):
 
 ```
 Docker version 29.4.0, build 9d7ad9f
@@ -113,7 +113,7 @@ Then verify Docker Compose:
 docker compose version
 ```
 
-Expected output (version may differ):
+Example output (version may differ):
 
 ```
 Docker Compose version v5.1.2
@@ -138,7 +138,7 @@ Open PowerShell and run:
 git --version
 ```
 
-Expected output (version may differ):
+Example output (version may differ):
 
 ```
 git version 2.53.0.windows.2
@@ -174,7 +174,7 @@ Verify your remotes:
 git remote -v
 ```
 
-Expected output:
+Example output:
 
 ```
 origin    https://github.com/YOUR_USERNAME/ResearchForge.git (fetch)
@@ -280,7 +280,7 @@ You can also verify all services from PowerShell:
 docker compose ps
 ```
 
-Expected output:
+Example output:
 
 ```
 NAME                       STATUS              PORTS
