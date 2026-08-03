@@ -113,7 +113,7 @@ Then verify Docker Compose:
 docker compose version
 ```
 
-Expected output:
+Expected output (version may differ):
 
 ```
 Docker Compose version v5.1.2
@@ -138,7 +138,7 @@ Open PowerShell and run:
 git --version
 ```
 
-Expected output:
+Expected output (version may differ):
 
 ```
 git version 2.53.0.windows.2
@@ -244,7 +244,7 @@ Open your browser and navigate to:
 http://localhost:4000/health
 ```
 
-Expected JSON response:
+Example JSON response:
 
 ```json
 {
@@ -262,7 +262,7 @@ Open your browser and navigate to:
 http://localhost:8000/health
 ```
 
-Expected JSON response:
+Example JSON response:
 
 ```json
 {

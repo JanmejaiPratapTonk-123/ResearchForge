@@ -60,8 +60,6 @@ For full decision rationale, see [docs/TechStack.md](TechStack.md).
 
 Docker Compose starts all four services — frontend, backend, AI service, and PostgreSQL — with a single command. This is the recommended path for all contributors.
 
-> ⚠️ **Available from M1.5 onwards.** The `docker-compose.yml` file will be added during the M1.5 scaffolding milestone.
-
 ```bash
 # Clone the repository
 git clone https://github.com/JanmejaiPratapTonk-123/ResearchForge.git
