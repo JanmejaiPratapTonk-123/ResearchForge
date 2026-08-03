@@ -53,6 +53,8 @@ For full decision rationale, see [docs/TechStack.md](TechStack.md).
 > - Docker Desktop (for Option A)
 > - Node.js (current LTS) + pnpm (for Option B frontend)
 > - Python 3.12+ + uv (for Option B AI service)
+>
+> - **Windows users:** See **[docs/WindowsSetup.md](WindowsSetup.md)** for a complete step-by-step guide covering WSL2 installation, Docker Desktop configuration, and troubleshooting common issues.
 
 ### Option A — Docker Compose (Recommended)
 

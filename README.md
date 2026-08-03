@@ -49,7 +49,7 @@ The goal is to combine **semantic search**, **knowledge graphs**, and **AI-assis
 
 - Docker Desktop
 - Docker Compose
-- WSL2 (Windows users)
+- WSL2 (Windows users) — see [docs/WindowsSetup.md](docs/WindowsSetup.md) for step-by-step instructions
 - Git
 
 ### Clone Repository
@@ -216,6 +216,7 @@ Full milestone detail: [docs/Roadmap.md](docs/Roadmap.md)
 ### 🏁 Getting Started & Contributing
 
 - [docs/GettingStarted.md](docs/GettingStarted.md) — 15-minute onboarding walkthrough
+- [docs/WindowsSetup.md](docs/WindowsSetup.md) — Windows development setup (WSL2, Docker Desktop, troubleshooting)
 - [CONTRIBUTING.md](CONTRIBUTING.md) — Contribution manual, conventions, and policies
 - [docs/BranchingStrategy.md](docs/BranchingStrategy.md) — Git branching cheat-sheet
 - [docs/CodingStandards.md](docs/CodingStandards.md) — Code style guidelines
