@@ -6,13 +6,14 @@ RUN npm install -g pnpm
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY backend/package.json backend/package.json
+COPY frontend/package.json frontend/package.json
 
 RUN pnpm install --frozen-lockfile
 
 COPY . .
 
-WORKDIR /app/backend
+WORKDIR /app/frontend
 
 EXPOSE 3000
 
-CMD ["pnpm", "dev"]
+CMD ["pnpm", "dev", "--hostname", "0.0.0.0"]
