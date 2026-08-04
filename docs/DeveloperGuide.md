@@ -53,12 +53,12 @@ For full decision rationale, see [docs/TechStack.md](TechStack.md).
 > - Docker Desktop (for Option A)
 > - Node.js (current LTS) + pnpm (for Option B frontend)
 > - Python 3.12+ + uv (for Option B AI service)
+>
+> - **Windows users:** See **[docs/WindowsSetup.md](WindowsSetup.md)** for a complete step-by-step guide covering WSL2 installation, Docker Desktop configuration, and troubleshooting common issues.
 
 ### Option A — Docker Compose (Recommended)
 
 Docker Compose starts all four services — frontend, backend, AI service, and PostgreSQL — with a single command. This is the recommended path for all contributors.
-
-> ⚠️ **Available from M1.5 onwards.** The `docker-compose.yml` file will be added during the M1.5 scaffolding milestone.
 
 ```bash
 # Clone the repository

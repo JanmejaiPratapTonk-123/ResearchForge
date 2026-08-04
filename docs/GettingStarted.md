@@ -90,6 +90,8 @@ Spend 5 minutes getting context:
 - A text editor ([VS Code](https://code.visualstudio.com/) recommended)
 - **Docker Desktop** ([Download](https://www.docker.com/products/docker-desktop)) *(for running services locally in M1.5+)*
 
+- **Windows users:** For a complete step-by-step guide covering WSL2, Docker Desktop, and troubleshooting, see **[docs/WindowsSetup.md](WindowsSetup.md)**.
+
 ### Fork and clone the repository
 
 1. Click **Fork** at the top-right of [github.com/JanmejaiPratapTonk-123/ResearchForge](https://github.com/JanmejaiPratapTonk-123/ResearchForge).
