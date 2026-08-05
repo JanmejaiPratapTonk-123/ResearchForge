@@ -1,0 +1,18 @@
+# Version control
+.git
+.gitignore
+
+# Dependencies
+**/node_modules
+
+# Build outputs & cache
+**/.next
+**/dist
+**/build
+**/.turbo
+
+# Environment variables & local configuration
+.env
+.env.*
+!.env.example
+
