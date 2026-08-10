@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/banner/banner.png" alt="ResearchForge Banner" width="100%" />
+</div>
+
 # ResearchForge
 
 <div align="center">
