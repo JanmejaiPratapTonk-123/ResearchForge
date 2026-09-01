@@ -14,3 +14,17 @@ dev = [
     "pytest>=8.0.0",
     "ruff>=0.4.0",
 ]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "PL",  # pylint
+]
+ignore = []

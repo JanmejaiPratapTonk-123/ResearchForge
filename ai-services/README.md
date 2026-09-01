@@ -39,10 +39,23 @@ curl http://localhost:8000/health
 
 ---
 
+## Code Quality & Linting
+
+ResearchForge uses **Ruff** for Python linting and code style checks:
+
+```bash
+# Run Ruff lint checks
+ruff check .
+
+# Automatically fix lint issues
+ruff check --fix .
+```
+
+---
+
 ## Planned Contributor Infrastructure Issues
 
 Contributors can take on AI service infrastructure tasks:
 - Integrate `sentence-transformers` library and `all-MiniLM-L6-v2` embedding model
 - Implement `POST /embed` vector generation endpoint
 - Set up Pytest test suite for embedding endpoints
-- Configure Ruff linter and code formatter
