@@ -34,7 +34,19 @@ pnpm dev
 
 # Check health endpoint
 curl http://localhost:4000/health
+
+# Fetch paper metadata by arXiv ID
+curl http://localhost:4000/api/papers/arxiv/1706.03762
 ```
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/health` | Server health check and timestamp |
+| `GET` | `/api/papers/arxiv/:id` | Fetches and parses paper metadata directly from arXiv API |
 
 ---
 
@@ -42,6 +54,5 @@ curl http://localhost:4000/health
 
 Contributors can take on backend infrastructure tasks:
 - Configure Swagger / OpenAPI interactive documentation (`/api/docs`)
-- Set up Jest testing framework and health route unit tests
 - Configure Zod request validation middleware
 - Implement JWT authentication with HTTP-only cookies
