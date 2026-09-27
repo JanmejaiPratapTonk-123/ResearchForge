@@ -35,6 +35,38 @@ python main.py
 
 # Check health endpoint
 curl http://localhost:8000/health
+
+# Generate 384-dimensional vector embedding
+curl -X POST http://localhost:8000/embed \
+  -H "Content-Type: application/json" \
+  -d '{"text": "Attention Is All You Need"}'
+
+# Calculate cosine similarity between two vectors
+curl -X POST http://localhost:8000/similarity \
+  -H "Content-Type: application/json" \
+  -d '{"vector_a": [...], "vector_b": [...]}'
+```
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/health` | Service health, model info, and dimension metadata |
+| `POST` | `/embed` | Generates 384-dimensional L2-normalized dense embeddings for `text` or `texts` |
+| `POST` | `/similarity` | Computes cosine similarity score between two 384-dimensional vectors |
+
+---
+
+## Running Tests & Linting
+
+```bash
+# Run unit test suite
+python -m unittest test_main.py
+
+# Run Ruff lint checks
+ruff check .
 ```
 
 ---
@@ -43,6 +75,5 @@ curl http://localhost:8000/health
 
 Contributors can take on AI service infrastructure tasks:
 - Integrate `sentence-transformers` library and `all-MiniLM-L6-v2` embedding model
-- Implement `POST /embed` vector generation endpoint
-- Set up Pytest test suite for embedding endpoints
-- Configure Ruff linter and code formatter
+- Implement paper summarization endpoints
+- Add caching for computed embeddings
