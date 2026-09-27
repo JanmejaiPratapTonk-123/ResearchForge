@@ -34,7 +34,21 @@ pnpm dev
 
 # Check health endpoint
 curl http://localhost:4000/health
+
+# Format paper citation (BibTeX, APA, MLA)
+curl -X POST http://localhost:4000/api/citations/format \
+  -H "Content-Type: application/json" \
+  -d '{"format": "bibtex", "paper": {"title": "Attention Is All You Need", "authors": ["Ashish Vaswani"], "publicationDate": "2017-06-12"}}'
 ```
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/health` | Server health check and timestamp |
+| `POST` | `/api/citations/format` | Formats a paper object into `bibtex`, `apa`, or `mla` format |
 
 ---
 
@@ -42,6 +56,5 @@ curl http://localhost:4000/health
 
 Contributors can take on backend infrastructure tasks:
 - Configure Swagger / OpenAPI interactive documentation (`/api/docs`)
-- Set up Jest testing framework and health route unit tests
 - Configure Zod request validation middleware
 - Implement JWT authentication with HTTP-only cookies
