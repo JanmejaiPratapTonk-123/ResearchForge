@@ -58,14 +58,28 @@ pnpm prisma generate
 
 # Create and apply a new migration (when DB is running)
 pnpm prisma migrate dev --name init
+
+# Seed the database with benchmark research papers
+pnpm run db:seed
 ```
+
+---
+
+## Benchmark Seed Data
+
+The database layer provides an authoritative seed dataset in `database/seed-data.json` containing seminal AI/ML research papers:
+1. *Attention Is All You Need* (Vaswani et al., 2017)
+2. *BERT: Pre-training of Deep Bidirectional Transformers* (Devlin et al., 2018)
+3. *Deep Residual Learning for Image Recognition* (He et al., 2015)
+4. *Generative Adversarial Nets* (Goodfellow et al., 2014)
+5. *Language Models are Few-Shot Learners* (Brown et al., 2020)
 
 ---
 
 ## Planned Contributor Issues
 
 Contributors can help build the database infrastructure by taking on upcoming tasks such as:
-- Writing database seed scripts for local development testing
 - Setting up Prisma migration scripts and CI workflow validation
 - Implementing vector similarity helper queries (`$queryRaw`) for `pgvector`
+- Adding benchmark papers from additional research domains
 
